@@ -1,0 +1,126 @@
+body {
+  font-family: 'Simonetta', ;
+  background-color: rgb(23, 15, 31);
+  color: white;
+}
+.pizza-box {
+  color: white;
+  background-color: rgb(23, 15, 31);
+  border: 1px solid rgb(23, 15, 31);
+  text-align: center;
+  font-family: 'Caveat', ;
+}
+.fin{
+  height: 500px;
+  width: 1400px; 
+  align-content: center; 
+}
+.header{
+  text-align: center;
+}
+
+.containerUn {
+  width: 80%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  margin-top: 50px;
+}
+.containerDeux {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: -webkit-box;
+}
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  word-wrap: break-word;
+  background-color: transparent;
+}
+h2 {
+  font-size: small;
+  text-align: center;
+
+}
+form{
+  margin-left: 280px;
+  
+}
+input[type="checkout"].btn-block,
+.reachUs {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.fa {
+  padding: 20px;
+  width: 60px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 30px;
+  margin: 5px 2px;
+  
+}
+.fa:hover {
+  opacity: 0.5;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-reddit {
+  background: #ff5700;
+  color: white;
+}
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+#showOrder {
+  margin-top: 40px;
+  margin-left: 280px;
+  
+}
+.order{
+  text-align: center;
+  
+}
+.vid{
+  animation-play-state: running;
+}
+/* @media (min-width: 576px) {
+  .containerUn {
+    max-width: 540px;
+  }
+}
+@media (min-width: 576px) {
+  .containerDeux {
+    max-width: 540px;
+  }
+}
+@media (min-width: 576px) {
+  .reachUs {
+    max-width: 540px;
+  }
+} */
