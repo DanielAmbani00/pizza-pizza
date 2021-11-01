@@ -106,9 +106,10 @@ input[type="checkout"].btn-block,
   text-align: center;
   
 }
-.vid{
-  animation-play-state: running;
+.placeOrder{
+  display: -webkit-inline-flex;
 }
+
 /* @media (min-width: 576px) {
   .containerUn {
     max-width: 540px;
