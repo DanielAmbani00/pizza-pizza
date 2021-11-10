@@ -1,106 +1,70 @@
-$(document).ready(function(){
-  $("#carouselmoi").carousel();
+// Constructor
+function Pizza(size, toppings, crust, total, orderNo){
+  this.size = size;
+  this.toppings = toppings;
+  this.crust =  crust;
+  this.total = total;
+  this.orderNo = orderNo;
+}
+
+// Create instances of the Pizza object
+let firstPizza = new Pizza("large", "pepperoni", "crispy", 1200, 1);
+let secondPizza = new Pizza("medium", "cheese", "gluten-free", 800, 2); 
+
+Pizza.prototype.myOrderDetails = function() {
+  console.log("Your order has been received for a " + this.size + " Pizza, with " + this.toppings + " toppings on a " + this.crust + " crust!")
+}
 
 
-
-  $(".carousel-control-prev").click(function () {  
-    $("#carouselmoi").carousel("prev");
-  }); 
-  $(".carousel-control-next").click(function () {  
-    $("#carouselmoi").carousel("next");
-  });
-
-
-  $(".imageOne").click(function(){
-    $("#carouselmoi").carousel(0);
-  });
-  $(".imageTwo").click(function(){
-    $("#carouselmoi").carousel(1);
-  });
-  $(".imageThree").click(function(){
-    $("#carouselmoi").carousel(2);
-  });
-  $(".imageFour").click(function(){
-    $("carouselmoi").carousel(3);
-  });
-
-  function Pizza(name, size, toppings, crust, quantity, delivery){
-    this.pizzas = {
-      "bbq":{"small":600, "medium":700, "large":900},
-      "periPeri":{"small":600, "medium":700, "large":900},
-      "chikenTikka":{"small":600, "medium":700, "large":900},
-      "veggieDelight":{"small":600, "medium":700, "large":900},
-      "hawaiian":{"small":600, "medium":700, "large":900}
-    };
-    this.toppings = {
-      "bacon": 100,
-      "pepperoni": 100,
-      "mushroom": 100,
-      "tikkaChicken": 100,
-      "mixPeppers":50,
-      "tomatoes":50
-    };
-    this.crusts = {
-      "crispy": 100,
-      "stuffed": 200,
-      "glutenFree": 300
-    };
-
-    this.delivery = {
-      "delivery": 200,
-      "pickup": 0
-    }
-    
-    this.price = (this.pizzas[name][size] + this.toppings[toppings] + this.crusts[crust] + this.delivery[delivery]) * quantity;
-  }
-
-  Pizza.prototype.summary = function(){
-    return [typeOfPizza, sizeOfPizza, toppings, crustOfPizza, deliveryLocation, quantity]
-  }
-
-  $("#get_pizza").on("click", function(){
-    
-    var typeOfPizza = $("#typeOfPizza").val()
-    var sizeOfPizza = $("#sizeOfPizza").val()
-    var toppings = $("#toppings").val()
-    var crustOfPizza = $("#crustOfPizza").val()
-    var quantity = parseInt($("#quantity").val());
-    var delivery = $("#delivery").val();
-    var pizzaCost = new Pizza(typeOfPizza, sizeOfPizza, toppings, crustOfPizza, quantity, delivery);
-
-    if(delivery === "delivery"){
-      swal("This will cost Ksh"+ pizzaCost.delivery[delivery] + " more" );
-    }
-    if(delivery === "delivery"){
-      var deliveryLocation=prompt("Please enter delivery location: ")
-      alert("Your pizza will be delivered to: " + deliveryLocation)
-    }
+// UI Logic
+$(document).ready(function() {
   
-    $(".typeOfPizza").append(typeOfPizza);
-    $(".sizeOfPizza").append(sizeOfPizza);
-    $(".crustOfPizza").append(crustOfPizza);
-    $(".toppings").append(toppings);
-    $(".quantity").append(quantity);
-    $(".total").append(pizzaCost.price);
+  $('#orderAnotherButton, .pizza-orders, #grandTotal').hide();
 
-  
-    // swal("Your Pizza cost is: " + pizzaCost.price)
-    
-    // console.log(this.summary)
-  
-    // alert("Your Pizza cost is: " + pizzaCost.price)
-    
-    
-    // console.log(pizzaCost);
-    // console.log("Your pizza price is:", pizzaCost.price);
-    // console.log("Your pizza type price is:", pizzaCost.pizzas[typeOfPizza][sizeOfPizza]);
+  $('button#orderButton').click(function() {
+      var sizeOfPizza = $('.pizza-size option:selected').val(); // gets value from the pizza-size selected option
+      var toppingsOfPizza = $('.pizza-toppings option:selected').val(); // gets value from the pizza-toppings selected option
+      var crustOfPizza = $('.pizza-crust option:selected').val(); // gets value from the pizza-crust selected option
 
+      var total = parseInt(sizeOfPizza) + parseInt(toppingsOfPizza) + parseInt(crustOfPizza); // Get the Total amount of the pizza
+      var order = 1; //Assign default order number
+      var grandTotal = 0; // For storing the total to be calculated
+
+
+      // Appending fetched values from the select options
+      $('#orderNo').html(order);
+      $('#size').html($('.pizza-size option:selected').text() + " - " + sizeOfPizza);
+      $('#toppings').html($('.pizza-toppings option:selected').text() + " - " + toppingsOfPizza);
+      $('#crust').html($('.pizza-crust option:selected').text() + " - " + crustOfPizza);
+      $('#total').html(total);
+      grandTotal = grandTotal + total;
+      $('#grandTotal span').html(grandTotal); // Displaying the grand total in our alert
+
+      $('#orderButton').hide()
+      $('#orderAnotherButton, .pizza-orders, #grandTotal').show();
+
+      $('button#orderAnotherButton').click(function() {
+          var sizeOfPizza = $('.pizza-size option:selected').val(); // gets value from the pizza-size selected option
+          var toppingsOfPizza = $('.pizza-toppings option:selected').val(); // gets value from the pizza-toppings selected option
+          var crustOfPizza = $('.pizza-crust option:selected').val(); // gets value from the pizza-crust selected option
+
+          var total = parseInt(sizeOfPizza) + parseInt(toppingsOfPizza) + parseInt(crustOfPizza);
+          order = order + 1;
+          grandTotal = grandTotal + total;
+          let newPizza = new Pizza(sizeOfPizza, toppingsOfPizza, crustOfPizza, total, order);
+          let newPizzaOrder = '<p>Order No: <span id="orderNo">' + order +'</span> Size: <span id="size">' + $('.pizza-size option:selected').text() + " - " + newPizza.size + '</span> Toppings: <span id="toppings">' + $('.pizza-toppings option:selected').text() + " - " + newPizza.toppings + '</span> Crust: <span id="crust">' + $('.pizza-crust option:selected').text() + " - " + newPizza.crust + '</span> <strong>Total: <span id="total">' + newPizza.total + '</span> </strong></p>';
+          
+          $('.pizza-orders').append(newPizzaOrder);
+          $('#grandTotal span').html(grandTotal);
+      });
+
+      $('button#checkoutButton').click(function() {
+          // alert("Your order has been received! The Total is Kshs. " + grandTotal);
+          prompt('Do you want it delivered?');
+      });
 
   });
-  
-  
 
-  });
-  function clearForm() {
-    document.getElementsByTagName("form").reset();
-  }
+
+
+});
