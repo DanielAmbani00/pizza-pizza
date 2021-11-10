@@ -69,34 +69,8 @@ input[type="checkout"].btn-block,
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.fa {
-  padding: 20px;
-  width: 60px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 30px;
-  margin: 5px 2px;
-  
-}
-.fa:hover {
-  opacity: 0.5;
-}
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
-}
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-.fa-reddit {
-  background: #ff5700;
-  color: white;
-}
-.fa-instagram {
-  background: #125688;
-  color: white;
-}
+
+
 #showOrder {
   margin-top: 40px;
   margin-left: 280px;
