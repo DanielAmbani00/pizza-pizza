@@ -108,6 +108,7 @@ input[type="checkout"].btn-block,
 }
 .placeOrder{
   display: -webkit-inline-flex;
+  box-sizing: content-box;
 }
 
 /* @media (min-width: 576px) {
